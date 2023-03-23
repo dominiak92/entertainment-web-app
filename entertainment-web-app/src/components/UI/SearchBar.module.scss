@@ -1,0 +1,48 @@
+@import "../../scss/mixins.scss";
+@import "../../scss/variables.scss";
+@import "../../scss/breakpoints.scss";
+
+.search-bar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  width: 381px;
+  height: 32px;
+
+  .searchButton {
+    background-color: $black;
+    width: 24px;
+    height: 24px;
+    border: none;
+    margin-right: 16px;
+    cursor: pointer;
+    img {
+        width: 24px;
+        height: 24px;
+    }
+  }
+  .input {
+    background-color: $black;
+    color: $white;
+    font-family: $font;
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 20px;
+    
+    border: none;
+    &:focus {
+        border-color: green;
+        outline: none;
+        border-bottom: 1px solid $lightblue
+    }
+    &:active{
+        border-bottom: 1px solid $white;
+
+    }
+  }
+}
