@@ -29,3 +29,35 @@
     @content;
   }
 }
+
+
+@mixin text-mobile {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  mix-blend-mode: normal;
+  opacity: 0.75;
+}
+
+@mixin recommended-text {
+  font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 11px;
+line-height: 14px;
+color: #FFFFFF;
+mix-blend-mode: normal;
+opacity: 0.75;
+}
+
+@mixin dot {
+  background: #FFFFFF;
+  mix-blend-mode: normal;
+  opacity: 0.5;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+}

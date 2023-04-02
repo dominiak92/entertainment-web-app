@@ -8,6 +8,7 @@
   align-items: center;
   flex-direction: row;
   margin-top: 24px;
+  margin-left: 12px;
   margin-bottom: 24px;
   width: 381px;
   height: 32px;
@@ -20,29 +21,28 @@
     margin-right: 16px;
     cursor: pointer;
     img {
-        width: 24px;
-        height: 24px;
+      width: 24px;
+      height: 24px;
     }
   }
   .input {
     background-color: $black;
     color: $white;
     font-family: $font;
-    font-family: 'Outfit';
+    font-family: "Outfit";
     font-style: normal;
     font-weight: 300;
     font-size: 16px;
     line-height: 20px;
-    
+
     border: none;
     &:focus {
-        border-color: green;
-        outline: none;
-        border-bottom: 1px solid $lightblue
+      border-color: green;
+      outline: none;
+      border-bottom: 1px solid $lightblue;
     }
-    &:active{
-        border-bottom: 1px solid $white;
-
+    &:active {
+      border-bottom: 1px solid $white;
     }
   }
 }
