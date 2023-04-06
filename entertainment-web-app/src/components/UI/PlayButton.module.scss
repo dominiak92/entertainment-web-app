@@ -1,0 +1,19 @@
+.playButton {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-size: contain;
+    transition: all 0.2s linear;
+    opacity: 0.75;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+    }
+  
+  }
+  .card {
+    width: 300px;
+    height: 180px;
+    background-size: cover;
+  }

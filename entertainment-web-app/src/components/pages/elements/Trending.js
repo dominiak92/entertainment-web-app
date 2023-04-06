@@ -6,8 +6,12 @@ import styles from "./Trending.module.scss";
 import "swiper/css";
 import BookmarkButton from "../../UI/bookmarkButton";
 import CircularProgress from "@mui/material/CircularProgress";
+import { dataContext } from "./dataContext";
+import { useContext } from "react";
 
-const Trending = (props) => {
+const Trending = () => {
+
+    const {data, error, isLoading} = useContext(dataContext)
   return (
     <>
       <p className={styles.title}>Trending</p>
@@ -18,8 +22,8 @@ const Trending = (props) => {
           spaceBetween={16}
           className="mySwiper"
         >
-          {props.data &&
-            props.data.map((item, index) =>
+          {data &&
+            data.map((item, index) =>
               item.isTrending ? (
                 <SwiperSlide key={item.title}>
                   
@@ -64,18 +68,16 @@ const Trending = (props) => {
               ) : null
             )}
         </Swiper>
-        {props.error && (
+        {error && (
           <div>
             <p>There was an error fetching the data</p>
           </div>
         )}
-        {/* {props.isLoading && (
+        {isLoading && (
           <div>
             <CircularProgress />
           </div>
-        )} */}
-        {/* <input type="text" onChange={(e) => props.setNewData(e.target.value)} />
-      <button onClick={props.handlePostData}>Add new data</button> */}
+        )}
       </div>
     </>
   );

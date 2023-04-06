@@ -1,25 +1,40 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useContext } from "react";
 import styles from "./bookmarkButton.module.scss";
 import bookmarkEmpty from "./icon-bookmark-empty.svg";
 import bookmarkFull from "./icon-bookmark-full.svg";
-import useFirebaseData from "../hooks/useAxios";
+import axios from "axios";
+import { dataContext } from "../pages/elements/dataContext";
 
-const BookmarkButton = ({ isBookmarked, index }) => {
-  const firebaseUrl =
-    "https://react-http-84e0c-default-rtdb.europe-west1.firebasedatabase.app/data.json";
-  const { putData } = useFirebaseData(firebaseUrl);
+const BookmarkButton = ({ index}) => {
+  
+  const { data, forceUpdate } = useContext(dataContext);
+ const { isBookmarked } = data[index];
+  const [clicked, setClicked] = useState(isBookmarked);
 
-  const [clicked, setClicked] = useState(false);
+  const isClicked = async () => {
+    setClicked(!clicked);
+    try {
+      const response = await axios.get(
+        `https://entertainment-api.herokuapp.com/data/${index}`
+      );
+      const singleObject = response.data;
+      singleObject.isBookmarked = !isBookmarked;
+      await axios.put(
+        `https://entertainment-api.herokuapp.com/data/${index}`,
+        singleObject
+      );
 
-  const isClicked = useCallback(() => {
-    console.log('button rerender')
-    putData(!isBookmarked, index);
-    setClicked((prevState) => !prevState);
-  }, [isBookmarked, index, putData]);
+      forceUpdate();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
   return (
     <button
-      onClick={isClicked}
+      onClick={() => isClicked()
+      }
       style={{
         backgroundImage: `url(${clicked ? bookmarkFull : bookmarkEmpty})`,
       }}
@@ -28,4 +43,4 @@ const BookmarkButton = ({ isBookmarked, index }) => {
   );
 };
 
-export default BookmarkButton;
+export default BookmarkButton; 
