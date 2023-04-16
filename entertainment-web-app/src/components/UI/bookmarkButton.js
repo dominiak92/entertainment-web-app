@@ -5,10 +5,9 @@ import bookmarkFull from "./icon-bookmark-full.svg";
 import axios from "axios";
 import { dataContext } from "../pages/elements/dataContext";
 
-const BookmarkButton = ({ index}) => {
-  
-  const { data, forceUpdate } = useContext(dataContext);
- const { isBookmarked } = data[index];
+const BookmarkButton = ({ index, isBookmarked }) => {
+  const { forceUpdate } = useContext(dataContext);
+//  const { isBookmarked } = data[index];
   const [clicked, setClicked] = useState(isBookmarked);
 
   const isClicked = async () => {

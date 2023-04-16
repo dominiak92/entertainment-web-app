@@ -1,37 +1,35 @@
-import styles from "./DataCards.module.scss";
-import movieIcon from "../assets/icon-category-movie.svg";
-import tvseriesIcon from "../assets/icon-category-tv.svg";
-import BookmarkButton from "../../UI/bookmarkButton";
+import React from "react";
+import BookmarkButton from "../bookmarkButton";
+import styles from "./SearchElement.module.scss";
+import movieIcon from "../../../assets/icon-category-movie.svg";
+import tvseriesIcon from "../../../assets/icon-category-tv.svg";
 import { useContext } from "react";
-import { dataContext } from "./dataContext";
-import Skeleton from "@mui/material/Skeleton";
-import PlayButton from "../../UI/PlayButton";
+import { SearchContext } from "./SearchContext";
+import PlayButton from "../PlayButton";
 
-const DataCards = (props) => {
-  let bookmarkedCount = 0;
+const SearchElement = (props) => {
+  const { searchText, filteredData } = useContext(SearchContext);
+  const bookmarked = filteredData.filter((element) => element.isBookmarked);
 
-  const { data, error, isLoading } = useContext(dataContext);
-  const skeleton = [0, 1, 2, 3, 4, 5];
+  const dataToUse = props.location === "bookmarked" ? bookmarked : filteredData;
+  const lengthToUse = props.location === "bookmarked" ? bookmarked.length : props.length
 
-  data &&
-    data.forEach((item) => {
-      if (item.isBookmarked === props.isBookmarked) {
-        bookmarkedCount++;
-      }
-    });
   return (
-    <div className={styles.wrapper}>
-      <p className={styles.title}>{bookmarkedCount === 0 ? props.noData : props.title}</p>
+    <>
+      <p>
+        We found {lengthToUse !== 0 ? lengthToUse : "no"} results for '
+        {searchText}'
+      </p>
       <div className={styles.cardWrapper}>
-        {data &&
-          data.map((item, index) =>
+        {dataToUse &&
+          dataToUse.map((item, index) =>
             props.type.includes(item.category) &&
             (props.isBookmarked ? item.isBookmarked : true) &&
             (props.isTrending ? !item.isTrending : true) ? (
               <div key={index} className={styles.element}>
                 <div
                   style={{
-                    backgroundImage: `url(${require(`../assets${item.thumbnail.regular.small}`)})`,
+                    backgroundImage: `url(${require(`../../../assets${item.thumbnail.regular.small}`)})`,
                   }}
                   className={styles.card}
                   key={item.title}
@@ -73,36 +71,9 @@ const DataCards = (props) => {
               </div>
             ) : null
           )}
-        {isLoading &&
-          skeleton.map((item, index) => (
-            <div key={index} className={styles.loading}>
-              <Skeleton
-                sx={{ bgcolor: "#161D2F" }}
-                animation="wave"
-                variant="rounded"
-                width={164}
-                height={110}
-              />
-              <Skeleton
-                sx={{ bgcolor: "#161D2F" }}
-                animation="wave"
-                variant="text"
-              />
-              <Skeleton
-                sx={{ bgcolor: "#161D2F" }}
-                animation="wave"
-                variant="text"
-              />
-            </div>
-          ))}
-        {error && (
-          <div>
-            <p>There is an error when fetching the data!</p>
-          </div>
-        )}
       </div>
-    </div>
+    </>
   );
 };
 
-export default DataCards;
+export default SearchElement;

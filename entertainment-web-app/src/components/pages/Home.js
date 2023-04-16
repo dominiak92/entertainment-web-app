@@ -1,29 +1,37 @@
-import useAxios from "../hooks/AxiosProvider";
 import Trending from "./elements/Trending";
 import styles from "./Home.module.scss";
 import DataCards from "./elements/DataCards";
-import { useState, useContext } from "react";
-import { dataContext } from "./elements/dataContext";
-
+import SearchBar from "../UI/Search/SearchBar";
+import SearchElement from "../UI/Search/SearchElement";
+import { useContext, useEffect } from "react";
+import { SearchContext } from "../UI/Search/SearchContext";
 import "swiper/css";
 
 const Home = () => {
-  const [dataChanged, setDataChanged] = useState(false);
+  const { searchText, setSearchText, filteredData } = useContext(SearchContext);
 
-  const handleDataChange = () => {
-    setDataChanged(true);
-    console.log(dataChanged);
-  };
+
+  useEffect(() => {
+    setSearchText('')
+  }, [setSearchText])
 
   return (
     <div className={styles.wrapper}>
-      <Trending />
-      <DataCards
-        type={["TV Series", "Movie"]}
-        title={"Recommended"}
-        isTrending={true}
-        onDataChange={handleDataChange}
-      />
+      <SearchBar title="Search for movies or TV series" />
+      {searchText !== "" ? (
+        <SearchElement length={filteredData.length} type={["TV Series", "Movie"]} location={'home'} />
+      ) : (
+        <>
+          <Trending />
+          <DataCards
+            type={["TV Series", "Movie"]}
+            title={"Recommended"}
+            noData={"Recommended"}
+            isTrending={true}
+
+          />
+        </>
+      )}
     </div>
   );
 };

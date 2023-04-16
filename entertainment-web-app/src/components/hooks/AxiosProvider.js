@@ -9,7 +9,6 @@ const AxiosProvider = ({children}) => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [updateValue, forceUpdate] = useReducer(x => x + 1, 0);
-console.log(isLoading)
   const fetchData = () => {
     axios
       .get("/data")
