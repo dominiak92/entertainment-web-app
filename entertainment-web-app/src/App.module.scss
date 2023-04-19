@@ -1,0 +1,14 @@
+@import "./scss/mixins.scss";
+@import "./scss/variables.scss";
+@import "./scss/breakpoints.scss";
+
+.App {
+    display: flex;
+    flex-direction: column;
+    @include xl {
+        flex-direction: row;
+    }
+    .content {
+        margin-top: 35px;
+    }
+  }

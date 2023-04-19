@@ -10,26 +10,51 @@
   align-items: center;
   padding: 18px;
   box-sizing: border-box;
-
+  @include md {
+    width: 719px;
+    height: 72px;
+    margin: 23px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 10px;
+    align-self: center;
+  }
+  @include xl {
+    width: 80px;
+    height: 93.5vh;
+    flex-direction: column;
+    align-self: flex-start;
+  }
+  .navigation {
+    background-color: transparent;
+    @include md {
+      .button {
+        font-size: 30px;
+        @include xl {
+          font-size: 45px;
+        }
+      }
+      @include xl {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-end;
+      }
+    }
+  }
   .logo {
     width: 25px;
     height: 20px;
+    cursor: pointer;
+    @include md {
+      width: 32px;
+      height: 25.6px;
+    }
   }
   .menu {
     display: flex;
     width: 133px;
     justify-content: space-around;
-  }
-  .icon {
-    width: 16px;
-    height: 16px;
-    transition: 0.2s linear;
-    &:last-child {
-      width: 13px;
-    }
-    &:hover {
-      filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(2%)
-        hue-rotate(78deg) brightness(107%) contrast(101%);
+    @include xl {
+      width: 80px;
     }
   }
   .avatar {
@@ -37,5 +62,10 @@
     height: 24px;
     border: 1px solid white;
     border-radius: 50%;
+    cursor: pointer;
+    @include md {
+      height: 32px;
+      width: 32px;
+    }
   }
 }

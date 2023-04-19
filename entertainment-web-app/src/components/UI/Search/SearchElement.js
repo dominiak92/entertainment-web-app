@@ -6,6 +6,7 @@ import tvseriesIcon from "../../../assets/icon-category-tv.svg";
 import { useContext } from "react";
 import { SearchContext } from "./SearchContext";
 import PlayButton from "../PlayButton";
+import { useSpring, animated } from "react-spring";
 
 const SearchElement = (props) => {
   const { searchText, filteredData } = useContext(SearchContext);
@@ -14,9 +15,15 @@ const SearchElement = (props) => {
   const dataToUse = props.location === "bookmarked" ? bookmarked : filteredData;
   const lengthToUse = props.location === "bookmarked" ? bookmarked.length : props.length
 
+  const fadePage = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  });
+
+
   return (
-    <>
-      <p>
+    <animated.div style={fadePage}>
+      <p className={styles.length}>
         We found {lengthToUse !== 0 ? lengthToUse : "no"} results for '
         {searchText}'
       </p>
@@ -72,7 +79,7 @@ const SearchElement = (props) => {
             ) : null
           )}
       </div>
-    </>
+    </animated.div>
   );
 };
 

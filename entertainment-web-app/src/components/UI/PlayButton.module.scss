@@ -1,24 +1,70 @@
+@import "../../scss/mixins.scss";
+@import "../../scss/variables.scss";
+@import "../../scss/breakpoints.scss";
+
 .playButton {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    background-size: contain;
-    transition: all 0.2s linear;
+  width: 160px;
+  height: 100px;
+  border: 1px solid red;
+  border: none;
+  background-size: contain;
+  transition: all 0.2s linear;
+  opacity: 0;
+  cursor: pointer;
+  @include md {
+    width: 220px;
+    height: 140px;
+  }
+  @include xl {
     opacity: 0.75;
-    cursor: pointer;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
     &:hover {
       opacity: 1;
     }
-  
   }
-  .card {
+}
+.card {
+  width: 300px;
+  height: 180px;
+  background-size: cover;
+  cursor: pointer;
+  @include md {
+    width: 600px;
+    height: 360px;
+  }
+  .img {
     width: 300px;
-    height: 180px;
-    background-size: cover;
-    cursor: pointer;
-    .img{
-        width: 300px;
-        height: 176px;
+    height: 176px;
+    @include md {
+      width: 600px;
+      height: 356px;
     }
   }
+}
+.titleUI {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 300;
+  padding: 5px;
+  font-size: 16px;
+  @include md {
+    font-size: 22px;
+    padding: 18px;
+  }
+  .icon {
+    @include md {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .year {
+    margin: 0;
+  }
+  .title {
+    margin: 0;
+  }
+}

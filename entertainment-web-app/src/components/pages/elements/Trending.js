@@ -16,10 +16,29 @@ const Trending = () => {
       <p className={styles.title}>Trending</p>
       <div className={styles.wrapper}>
         <Swiper
-          slidesPerView={"1.5"}
+          slidesPerView={1.5}
           centeredSlides={false}
           spaceBetween={16}
           className="mySwiper"
+          breakpoints={{
+            500: {
+              slidesPerView: 2,
+            },
+            600: {
+              slidesPerView: 2.5,
+            },
+            768: {
+              slidesPerView: 1.5,
+            },
+            960: {
+              slidesPerView: 2,
+            },
+            1200: {
+              slidesPerView: 1.95,
+              width: 800,
+              spaceBetween: 156,
+            },
+          }}
         >
           {data &&
             data.map((item, index) =>
@@ -65,6 +84,9 @@ const Trending = () => {
                         title={item.title}
                         img={item.thumbnail.regular.large}
                         year={item.year}
+                        icon={
+                          item.category === "Movie" ? movieIcon : tvseriesIcon
+                        }
                       />
                     </div>
                   </div>

@@ -5,6 +5,11 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import template from "./videoplayertemplate.png";
+import Tooltip from "@mui/material/Tooltip";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import CircleIcon from '@mui/icons-material/Circle';
+
 
 const PlayButton = (props) => {
   const [open, setOpen] = useState(false); // Stan, który kontroluje widoczność modala
@@ -33,10 +38,25 @@ const PlayButton = (props) => {
             backgroundColor: "#161D2F",
             color: "white",
             fontFamily: "outfit",
-            padding: "15px",
+            padding: "0px",
           }}
         >
-          {props.title} | {props.year}
+          <div className={styles.titleUI}>
+            <p className={styles.title}>{props.title}</p>
+            <CircleIcon sx={{fontSize: "5px"}}/>
+            <p className={styles.year}>{props.year}</p>
+            <CircleIcon sx={{fontSize: "5px"}}/>
+            <img
+              className={styles.icon}
+              src={`${props.icon}`}
+              alt="movie icon"
+            />
+            <Tooltip title="Close">
+              <IconButton onClick={handleClose}>
+                <CloseIcon sx={{color: 'white'}} />
+              </IconButton>
+            </Tooltip>
+          </div>
         </DialogTitle>
         <DialogContent
           sx={{

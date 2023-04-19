@@ -1,11 +1,10 @@
 import React from "react";
-import searchIco from "../../../assets/icon-search.svg"
+import searchIco from "../../../assets/icon-search.svg";
 import styles from "./SearchBar.module.scss";
-import { useContext } from "react"
+import { useContext } from "react";
 import { SearchContext } from "./SearchContext";
 
 const SearchBar = (props) => {
-
   const { setSearchText } = useContext(SearchContext);
 
   const handleSearchTextChange = (event) => {
@@ -18,24 +17,18 @@ const SearchBar = (props) => {
     }
   };
 
-
   return (
-    <form
-      className={styles["search-bar"]}
-    >
-    <button className={styles.searchButton} type="submit">
-        <img src={searchIco} alt="search" />
-      </button>
+    <form className={styles["search-bar"]}>
+      <img className={styles.searchButton} src={searchIco} alt="search" />
+
       <input
-      onChange={handleSearchTextChange}
+        onChange={handleSearchTextChange}
         className={styles.input}
         type="search"
         placeholder={props.title}
-        
       />
     </form>
   );
-}
+};
 
-
-export default SearchBar
+export default SearchBar;

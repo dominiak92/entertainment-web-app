@@ -9,6 +9,20 @@ const AxiosProvider = ({children}) => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [updateValue, forceUpdate] = useReducer(x => x + 1, 0);
+
+  const countBookmarked = () => {
+    if (!data) {
+      return 0;
+    }
+    return data.reduce((count, item) => {
+      if (item.isBookmarked) {
+        return count + 1;
+      } else {
+        return count;
+      }
+    }, 0);
+  }
+
   const fetchData = () => {
     axios
       .get("/data")
@@ -28,7 +42,7 @@ const AxiosProvider = ({children}) => {
   }, [updateValue]);
 
 return (
-<dataContext.Provider value={{data, error, isLoading, forceUpdate}}>
+<dataContext.Provider value={{data, error, isLoading, forceUpdate, countBookmarked}}>
     {children}
 </dataContext.Provider>)
 };

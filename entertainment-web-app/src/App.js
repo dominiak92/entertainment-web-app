@@ -6,19 +6,23 @@ import Tvseries from "./components/pages/Tvseries";
 import Home from "./components/pages/Home";
 import AxiosProvider from "./components/hooks/AxiosProvider";
 import SearchProvider from "./components/UI/Search/SearchProvider";
+import styles from "./App.module.scss";
 function App() {
   return (
     <AxiosProvider>
       <SearchProvider>
-        <div className="App">
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/movies" element={<Movies />} />
-            <Route path="/tvseries" element={<Tvseries />} />
-            <Route path="/bookmarked" element={<Bookmarked />} />
-          </Routes>
-        </div>
+      
+        <div className={styles.App}>
+            <Header />
+            <div className={styles.content}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/movies" element={<Movies />} />
+                <Route path="/tvseries" element={<Tvseries />} />
+                <Route path="/bookmarked" element={<Bookmarked />} />
+              </Routes>
+            </div>
+          </div>
       </SearchProvider>
     </AxiosProvider>
   );

@@ -3,6 +3,7 @@ import SearchBar from "../UI/Search/SearchBar";
 import { useContext, useEffect } from "react";
 import { SearchContext } from "../UI/Search/SearchContext";
 import SearchElement from "../UI/Search/SearchElement";
+import { useSpring, animated } from "react-spring";
 
 const Bookmarked = () => {
   const { searchText, setSearchText } = useContext(SearchContext);
@@ -11,8 +12,13 @@ const Bookmarked = () => {
     setSearchText("");
   }, [setSearchText]);
 
+  const fadePage = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  });
+
   return (
-    <>
+    <animated.div style={fadePage}>
       <SearchBar title="Search for bookmarked shows" />
       {searchText !== "" ? (
         <SearchElement type={["TV Series", "Movie"]} location={"bookmarked"} />
@@ -32,7 +38,7 @@ const Bookmarked = () => {
           />
         </>
       )}
-    </>
+    </animated.div>
   );
 };
 

@@ -1,14 +1,16 @@
 import { useState, useContext } from "react";
+import * as React from 'react';
 import styles from "./bookmarkButton.module.scss";
 import bookmarkEmpty from "./icon-bookmark-empty.svg";
 import bookmarkFull from "./icon-bookmark-full.svg";
 import axios from "axios";
 import { dataContext } from "../pages/elements/dataContext";
 
+
 const BookmarkButton = ({ index, isBookmarked }) => {
   const { forceUpdate } = useContext(dataContext);
-//  const { isBookmarked } = data[index];
   const [clicked, setClicked] = useState(isBookmarked);
+
 
   const isClicked = async () => {
     setClicked(!clicked);
@@ -29,17 +31,18 @@ const BookmarkButton = ({ index, isBookmarked }) => {
     }
   };
 
-
   return (
+    <>
     <button
-      onClick={() => isClicked()
-      }
+      onClick={() => isClicked()}
       style={{
         backgroundImage: `url(${clicked ? bookmarkFull : bookmarkEmpty})`,
       }}
       className={styles.bookmarkButton}
     ></button>
+
+    </>
   );
 };
 
-export default BookmarkButton; 
+export default BookmarkButton;

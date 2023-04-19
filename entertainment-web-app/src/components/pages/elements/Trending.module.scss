@@ -10,11 +10,19 @@
   letter-spacing: -0.3125px;
   margin-left: 16px;
   margin-top: 24px;
-
+  @include md {
+    font-size: 32px;
+    margin-top: 33px;
+    margin-left: 25px;
+  }
 }
 .wrapper {
   width: auto;
   margin-left: 16px;
+  
+  @include md {
+    margin-left: 24px;
+  }
   .trendingCard {
     display: flex;
     flex-direction: column;
@@ -79,16 +87,26 @@
           font-size: 13px;
           text-align: center;
           margin: 0;
-
-          /* Pure White */
-
           color: #ffffff;
+          @include md{
+            font-size: 15px;
+          }
+        }
+        @include md {
+          margin-right: 15px;
+          width: 36px;
+          height: 24px;
         }
       }
       .informations {
         display: flex;
         flex-direction: column;
+        justify-content: space-around;
         height: 38px;
+        @include md {
+          height: 52px;
+          margin: 24px;
+        }
         .upperinfoWrapper {
           align-items: center;
           justify-content: flex-start;
@@ -115,6 +133,10 @@
           font-size: 15px;
           line-height: 19px;
           margin: 0;
+          @include md {
+            font-size: 24px;
+
+          }
         }
         .categoryWrapper {
           display: flex;
@@ -142,6 +164,10 @@
           opacity: 0.75;
         }
       }
+    }
+    @include md {
+      width: 470px;
+      height: 230px
     }
   }
 }

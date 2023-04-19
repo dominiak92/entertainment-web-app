@@ -10,8 +10,15 @@
   margin-top: 24px;
   margin-left: 12px;
   margin-bottom: 24px;
-  width: 381px;
+  width: 340px;
   height: 32px;
+  @include md {
+    margin-top: 0px;
+    margin-left: 25px;
+  }
+  @include xl {
+    width: 400px;
+  }
 
   .searchButton {
     background-color: $black;
@@ -19,14 +26,13 @@
     height: 24px;
     border: none;
     margin-right: 16px;
-    cursor: pointer;
-    img {
-      width: 24px;
-      height: 24px;
+    @include md{
+      width: 32px;
+      height: 32px;
     }
   }
   .input {
-    background-color: $black;
+    background-color: $black; 
     color: $white;
     font-family: $font;
     font-family: "Outfit";
@@ -34,8 +40,8 @@
     font-weight: 300;
     font-size: 16px;
     line-height: 20px;
-
     border: none;
+    width: 70vw;
     &:focus {
       border-color: green;
       outline: none;
@@ -43,6 +49,12 @@
     }
     &:active {
       border-bottom: 1px solid $white;
+    }
+    @include md {
+      font-size: 24px;
+    }
+    @include xl {
+      width: 500px;
     }
   }
 }

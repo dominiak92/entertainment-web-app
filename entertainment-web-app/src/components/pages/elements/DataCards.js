@@ -9,6 +9,7 @@ import PlayButton from "../../UI/PlayButton";
 
 const DataCards = (props) => {
   let bookmarkedCount = 0;
+  
 
   const { data, error, isLoading } = useContext(dataContext);
   const skeleton = [0, 1, 2, 3, 4, 5];
@@ -16,9 +17,10 @@ const DataCards = (props) => {
   data &&
     data.forEach((item) => {
       if (item.isBookmarked === props.isBookmarked) {
-        bookmarkedCount++;
+        bookmarkedCount++; 
       }
     });
+
   return (
     <div className={styles.wrapper}>
       <p className={styles.title}>{bookmarkedCount === 0 ? props.noData : props.title}</p>
@@ -46,6 +48,7 @@ const DataCards = (props) => {
                       title={item.title}
                       img={item.thumbnail.regular.large}
                       year={item.year}
+                      icon={item.category === "Movie" ? movieIcon : tvseriesIcon}
                     />
                   </div>
                 </div>
@@ -80,8 +83,8 @@ const DataCards = (props) => {
                 sx={{ bgcolor: "#161D2F" }}
                 animation="wave"
                 variant="rounded"
-                width={164}
-                height={110}
+                width={'18vw'}
+                height={'10vw'}
               />
               <Skeleton
                 sx={{ bgcolor: "#161D2F" }}
