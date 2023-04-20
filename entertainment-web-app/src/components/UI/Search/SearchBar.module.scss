@@ -7,7 +7,6 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: row;
-  margin-top: 24px;
   margin-left: 12px;
   margin-bottom: 24px;
   width: 340px;
@@ -17,6 +16,7 @@
     margin-left: 25px;
   }
   @include xl {
+    margin-top: 24px;
     width: 400px;
   }
 

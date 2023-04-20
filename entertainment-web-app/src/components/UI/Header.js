@@ -13,7 +13,6 @@ import { useState } from "react";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useContext } from "react";
 import { dataContext } from "../pages/elements/dataContext";
-import useMediaQuery from '@mui/material/useMediaQuery';
 import Badge from '@mui/material/Badge';
 
 
